@@ -28,12 +28,25 @@ class _ExpensesState extends State<Expenses> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Money Tracker'),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.add),
+          )
+        ],
+      ),
       body: Column(
         children: [
+          const Text(
+            'The Chart',
+          ),
           Expanded(
-              child: ExpensesList(
-                  expenses:
-                      _registeredExpenses)), // ListView can't be rendered inside a Column widget
+            child: ExpensesList(
+              expenses: _registeredExpenses,
+            ),
+          ), // ListView can't be rendered inside a Column widget
         ],
       ),
     );
