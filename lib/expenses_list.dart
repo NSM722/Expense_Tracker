@@ -12,7 +12,8 @@ class ExpensesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      // this builder method ensures that the items to be rendered are created when needed
+      // this builder method ensures that
+      // the items are rendered when needed
       itemCount: expenses.length,
       itemBuilder: (context, index) => Text(expenses[index].title),
     );
