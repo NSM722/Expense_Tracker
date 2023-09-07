@@ -1,4 +1,4 @@
-# expense_tracker
+# Expense Tracker
 
 A new Flutter project.
 
@@ -16,3 +16,67 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 ### [uuid | Dart package](https://pub.dev/packages/uuid "generate unique ids")
+
+### Installation
+
+```terminal
+flutter pub add uuid
+```
+
+```dart
+import 'package:uuid/uuid.dart';
+
+const uuid = Uuid();
+
+class Expense {
+  // constructor function with named parameters
+  Expense({required this.title, required this.amount, required this.date})
+      : id = uuid.v4(); // initializer list generating unique ids
+  final String id;
+  final String title;
+  final double amount;
+  final DateTime date;
+}
+```
+
+### [Flutter package for formatting dates](https://pub.dev/packages/intl/install)
+
+```terminal
+flutter pub add intl
+```
+
+### Refactoring of the modal bottom sheet
+
+The following class shows a simple example of a TextField Widget
+
+To add a visible label, one needs to add the `decoration` parameter which has the `InputDecoration()` widget that gives way to the `label` attribute
+
+```dart
+import 'package:flutter/material.dart';
+
+class NewExpense extends StatefulWidget {
+  const NewExpense({super.key});
+
+  @override
+  State<NewExpense> createState() => _NewExpenseState();
+}
+
+class _NewExpenseState extends State<NewExpense> {
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.all(16),
+      child: Column(
+        children: [
+          TextField(
+            maxLength: 60, // max length of characters to type
+            decoration: InputDecoration(
+              label: Text('Expense Title'),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+```
