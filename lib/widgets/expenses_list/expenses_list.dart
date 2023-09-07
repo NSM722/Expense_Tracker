@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:expense_tracker/models/expense.dart';
+import 'package:expense_tracker/widgets/expenses_list/expense_item.dart';
+import 'package:flutter/material.dart';
 
 class ExpensesList extends StatelessWidget {
   const ExpensesList({
@@ -15,7 +16,9 @@ class ExpensesList extends StatelessWidget {
       // this builder method ensures that
       // the items are rendered when needed
       itemCount: expenses.length,
-      itemBuilder: (context, index) => Text(expenses[index].title),
+      itemBuilder: (context, index) => ExpenseItem(
+        expense: expenses[index],
+      ),
     );
   }
 }
