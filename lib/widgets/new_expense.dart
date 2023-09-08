@@ -60,7 +60,9 @@ class _NewExpenseState extends State<NewExpense> {
                 child: const Text('Save Expense'),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context); // closes the overlay
+                },
                 child: const Text('Cancel'),
               ),
             ],
