@@ -38,6 +38,17 @@ class _NewExpenseState extends State<NewExpense> {
     });
   }
 
+  void _onSubmit() {
+    final enteredAmount = double.tryParse(_expenseAmountController
+        .text); // converts the string and returns null if value is invalid
+    final isAmountInvalid = enteredAmount == null || enteredAmount <= 0;
+    if (_expenseTitleController.text.trim().isEmpty ||
+        isAmountInvalid ||
+        _selectedDate == null) {
+      // show error message
+    }
+  }
+
   @override
   void dispose() {
     // communicating to flutter that this
@@ -132,14 +143,7 @@ class _NewExpenseState extends State<NewExpense> {
                 },
               ),
               ElevatedButton(
-                onPressed: () {
-                  print(
-                    _expenseTitleController.text,
-                  );
-                  print(
-                    _expenseAmountController.text,
-                  );
-                },
+                onPressed: _onSubmit,
                 child: const Text('Save Expense'),
               ),
               TextButton(
