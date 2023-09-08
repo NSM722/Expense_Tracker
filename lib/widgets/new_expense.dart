@@ -8,13 +8,15 @@ class NewExpense extends StatefulWidget {
 }
 
 class _NewExpenseState extends State<NewExpense> {
-  var _enteredExpenseTitle = '';
+  // TextEditingController() object that handles user input
+  final _expenseTitleController = TextEditingController();
 
-  void _saveExpenseTitle(String inputValue) {
-    // setState method not being used since UI
-    // isn't being updated, only a value is being
-    //stored on the BG
-    _enteredExpenseTitle = inputValue;
+  @override
+  void dispose() {
+    // communicating to flutter that this
+    // controller isn't needed anymore
+    _expenseTitleController.dispose();
+    super.dispose();
   }
 
   @override
@@ -24,7 +26,7 @@ class _NewExpenseState extends State<NewExpense> {
       child: Column(
         children: [
           TextField(
-            onChanged: _saveExpenseTitle,
+            controller: _expenseTitleController, // set the controller
             maxLength: 60, // max length of characters to type
             decoration: const InputDecoration(
               label: Text('Expense Title'),
@@ -35,7 +37,7 @@ class _NewExpenseState extends State<NewExpense> {
               ElevatedButton(
                 onPressed: () {
                   print(
-                    _enteredExpenseTitle,
+                    _expenseTitleController.text,
                   );
                 },
                 child: const Text('Save Expense'),
