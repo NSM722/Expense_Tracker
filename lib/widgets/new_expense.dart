@@ -10,12 +10,14 @@ class NewExpense extends StatefulWidget {
 class _NewExpenseState extends State<NewExpense> {
   // TextEditingController() object that handles user input
   final _expenseTitleController = TextEditingController();
+  final _expenseAmountController = TextEditingController();
 
   @override
   void dispose() {
     // communicating to flutter that this
     // controller isn't needed anymore
     _expenseTitleController.dispose();
+    _expenseAmountController.dispose();
     super.dispose();
   }
 
@@ -29,7 +31,19 @@ class _NewExpenseState extends State<NewExpense> {
             controller: _expenseTitleController, // set the controller
             maxLength: 60, // max length of characters to type
             decoration: const InputDecoration(
-              label: Text('Expense Title'),
+              label: Text(
+                'Expense Title',
+              ),
+            ),
+          ),
+          TextField(
+            controller: _expenseAmountController,
+            keyboardType: TextInputType.number, // allow only number inputs
+            decoration: const InputDecoration(
+              prefixText: '\$ ',
+              label: Text(
+                'Expense Amount',
+              ),
             ),
           ),
           Row(
@@ -39,8 +53,15 @@ class _NewExpenseState extends State<NewExpense> {
                   print(
                     _expenseTitleController.text,
                   );
+                  print(
+                    _expenseAmountController.text,
+                  );
                 },
                 child: const Text('Save Expense'),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: const Text('Cancel'),
               ),
             ],
           ),
