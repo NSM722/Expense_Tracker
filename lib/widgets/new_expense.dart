@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+final formatter = DateFormat.yMd(); // utility object for formatting dates
 
 class NewExpense extends StatefulWidget {
   const NewExpense({super.key});
@@ -11,8 +14,9 @@ class _NewExpenseState extends State<NewExpense> {
   // TextEditingController() object that handles user input
   final _expenseTitleController = TextEditingController();
   final _expenseAmountController = TextEditingController();
+  DateTime? _selectedDate;
 
-  void _showDatePicker() {
+  void _showDatePicker() async {
     final now = DateTime.now();
     final firstDate = DateTime(
       now.year - 1,
@@ -20,11 +24,16 @@ class _NewExpenseState extends State<NewExpense> {
       now.day,
     );
 
-    showDatePicker(
-        context: context,
-        initialDate: now,
-        firstDate: firstDate,
-        lastDate: now);
+    final chosenDate = await showDatePicker(
+      context: context,
+      initialDate: now,
+      firstDate: firstDate,
+      lastDate: now,
+    );
+
+    setState(() {
+      _selectedDate = chosenDate;
+    });
   }
 
   @override
@@ -33,6 +42,7 @@ class _NewExpenseState extends State<NewExpense> {
     // controller isn't needed anymore
     _expenseTitleController.dispose();
     _expenseAmountController.dispose();
+
     super.dispose();
   }
 
@@ -74,8 +84,10 @@ class _NewExpenseState extends State<NewExpense> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Text(
-                      'Selected Date',
+                    Text(
+                      _selectedDate == null
+                          ? 'No Date Selected'
+                          : formatter.format(_selectedDate!),
                     ),
                     IconButton(
                       onPressed: _showDatePicker,
