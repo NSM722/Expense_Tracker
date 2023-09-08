@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:expense_tracker/models/expense.dart';
 
 final formatter = DateFormat.yMd(); // utility object for formatting dates
 
@@ -15,6 +16,7 @@ class _NewExpenseState extends State<NewExpense> {
   final _expenseTitleController = TextEditingController();
   final _expenseAmountController = TextEditingController();
   DateTime? _selectedDate;
+  Category _selectedCategory = Category.leisure;
 
   void _showDatePicker() async {
     final now = DateTime.now();
@@ -100,8 +102,35 @@ class _NewExpenseState extends State<NewExpense> {
               )
             ],
           ),
+          const SizedBox(
+            height: 16,
+          ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
+              DropdownButton(
+                value:
+                    _selectedCategory, // ensure current selected value is shown onb the screen
+                items: Category.values
+                    .map(
+                      (item) => DropdownMenuItem(
+                        value:
+                            item, // this value is stored in the onChange func
+                        child: Text(
+                          item.name.toUpperCase(),
+                        ),
+                      ),
+                    )
+                    .toList(), // display all values in the enum as a dropdown list
+                onChanged: (value) {
+                  setState(() {
+                    if (value == null) {
+                      return;
+                    }
+                    _selectedCategory = value;
+                  });
+                },
+              ),
               ElevatedButton(
                 onPressed: () {
                   print(
