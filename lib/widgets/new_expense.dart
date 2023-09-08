@@ -8,17 +8,39 @@ class NewExpense extends StatefulWidget {
 }
 
 class _NewExpenseState extends State<NewExpense> {
+  var _enteredExpenseTitle = '';
+
+  void _saveExpenseTitle(String inputValue) {
+    // setState method not being used since UI
+    // isn't being updated, only a value is being
+    //stored on the BG
+    _enteredExpenseTitle = inputValue;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(16),
+    return Padding(
+      padding: const EdgeInsets.all(16),
       child: Column(
         children: [
           TextField(
+            onChanged: _saveExpenseTitle,
             maxLength: 60, // max length of characters to type
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               label: Text('Expense Title'),
             ),
+          ),
+          Row(
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  print(
+                    _enteredExpenseTitle,
+                  );
+                },
+                child: const Text('Save Expense'),
+              ),
+            ],
           ),
         ],
       ),
