@@ -12,6 +12,21 @@ class _NewExpenseState extends State<NewExpense> {
   final _expenseTitleController = TextEditingController();
   final _expenseAmountController = TextEditingController();
 
+  void _showDatePicker() {
+    final now = DateTime.now();
+    final firstDate = DateTime(
+      now.year - 1,
+      now.month,
+      now.day,
+    );
+
+    showDatePicker(
+        context: context,
+        initialDate: now,
+        firstDate: firstDate,
+        lastDate: now);
+  }
+
   @override
   void dispose() {
     // communicating to flutter that this
@@ -36,15 +51,42 @@ class _NewExpenseState extends State<NewExpense> {
               ),
             ),
           ),
-          TextField(
-            controller: _expenseAmountController,
-            keyboardType: TextInputType.number, // allow only number inputs
-            decoration: const InputDecoration(
-              prefixText: '\$ ',
-              label: Text(
-                'Expense Amount',
+          Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: _expenseAmountController,
+                  keyboardType:
+                      TextInputType.number, // allow only number inputs
+                  decoration: const InputDecoration(
+                    prefixText: 'Kshs. ',
+                    label: Text(
+                      'Expense Amount',
+                    ),
+                  ),
+                ),
               ),
-            ),
+              const SizedBox(
+                width: 16,
+              ),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Selected Date',
+                    ),
+                    IconButton(
+                      onPressed: _showDatePicker,
+                      icon: const Icon(
+                        Icons.calendar_month_outlined,
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
           ),
           Row(
             children: [
