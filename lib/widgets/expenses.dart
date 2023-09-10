@@ -55,6 +55,17 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
+    Widget mainContent = const Center(
+      child: Text('No expenses found, please add some!'),
+    );
+
+    if (_registeredExpenses.isNotEmpty) {
+      mainContent = ExpensesList(
+        expenses: _registeredExpenses,
+        onDelete: _deleteExpense,
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Money Tracker'),
@@ -71,10 +82,7 @@ class _ExpensesState extends State<Expenses> {
             'The Chart',
           ),
           Expanded(
-            child: ExpensesList(
-              expenses: _registeredExpenses,
-              onDelete: _deleteExpense,
-            ),
+            child: mainContent,
           ), // ListView can't be rendered inside a Column widget
         ],
       ),
