@@ -46,6 +46,13 @@ class _ExpensesState extends State<Expenses> {
     });
   }
 
+  // deleting expenses
+  void _deleteExpense(Expense expense) {
+    setState(() {
+      _registeredExpenses.remove(expense);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,6 +73,7 @@ class _ExpensesState extends State<Expenses> {
           Expanded(
             child: ExpensesList(
               expenses: _registeredExpenses,
+              onDelete: _deleteExpense,
             ),
           ), // ListView can't be rendered inside a Column widget
         ],
