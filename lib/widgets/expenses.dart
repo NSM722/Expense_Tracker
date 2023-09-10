@@ -29,13 +29,68 @@ class _ExpensesState extends State<Expenses> {
   // adds a modal overlay
   void _openAddExpenseModal() {
     showModalBottomSheet(
+      // ensures the modal overlay occupies the height
+      // of the screen and doesn't overlap the input fields
+      isScrollControlled: true,
       context: context,
-      builder: (ctx) => const NewExpense(),
+      builder: (ctx) => NewExpense(
+          onAddExpense:
+              _addExpense), // pass the function as a value for it to be executed
+    );
+  }
+
+  // adding new expenses
+  void _addExpense(Expense expense) {
+    setState(() {
+      _registeredExpenses.add(expense);
+    });
+  }
+
+  // deleting expenses
+  void _deleteExpense(Expense expense) {
+    final expenseIndex = _registeredExpenses.indexOf(expense);
+    setState(() {
+      _registeredExpenses.remove(expense);
+    });
+    ScaffoldMessenger.of(context).clearSnackBars();
+    // info message
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: const Text(
+          'Expense Deleted',
+        ),
+        duration: const Duration(
+          seconds: 5,
+        ),
+        action: SnackBarAction(
+          label: 'Undo',
+          onPressed: () {
+            setState(() {
+              // re-inserting the deleted item
+              _registeredExpenses.insert(
+                expenseIndex,
+                expense,
+              );
+            });
+          },
+        ),
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    Widget mainContent = const Center(
+      child: Text('No expenses found, please add some!'),
+    );
+
+    if (_registeredExpenses.isNotEmpty) {
+      mainContent = ExpensesList(
+        expenses: _registeredExpenses,
+        onDelete: _deleteExpense,
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Money Tracker'),
@@ -52,9 +107,7 @@ class _ExpensesState extends State<Expenses> {
             'The Chart',
           ),
           Expanded(
-            child: ExpensesList(
-              expenses: _registeredExpenses,
-            ),
+            child: mainContent,
           ), // ListView can't be rendered inside a Column widget
         ],
       ),
