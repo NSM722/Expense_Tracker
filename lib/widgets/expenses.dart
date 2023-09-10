@@ -29,6 +29,9 @@ class _ExpensesState extends State<Expenses> {
   // adds a modal overlay
   void _openAddExpenseModal() {
     showModalBottomSheet(
+      // ensures the modal overlay occupies the height
+      // of the screen and doesn't overlap the input fields
+      isScrollControlled: true,
       context: context,
       builder: (ctx) => NewExpense(
           onAddExpense:
