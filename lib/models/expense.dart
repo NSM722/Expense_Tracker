@@ -39,11 +39,19 @@ class Expense {
   }
 }
 
+// Model tied to a specific Category
 class ExpenseBucket {
   const ExpenseBucket({
     required this.category,
     required this.expenses,
   });
+
+  // defining an additional alternative constructor function
+  // filters out expenses belonging to a particular category
+  ExpenseBucket.forCategory(List<Expense> allExpenses, this.category)
+      : expenses = allExpenses
+            .where((expense) => expense.category == category)
+            .toList();
 
   final Category category;
   final List<Expense> expenses;
