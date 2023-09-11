@@ -20,6 +20,13 @@ class ExpensesList extends StatelessWidget {
       itemCount: expenses.length,
       itemBuilder: (context, index) => Dismissible(
         key: ValueKey(expenses[index]), // unique identifier
+        background: Container(
+          color: Theme.of(context).colorScheme.error.withOpacity(
+              0.77), // automatically generated error color from the seed color in the main.dart file
+          margin: EdgeInsets.symmetric(
+            horizontal: Theme.of(context).cardTheme.margin!.horizontal,
+          ),
+        ),
         onDismissed: (direction) => onDelete(expenses[index]),
         child: ExpenseItem(
           expense: expenses[index],
