@@ -88,3 +88,6 @@ class _NewExpenseState extends State<NewExpense> {
 **Element Tree** - In-memory representation of widgets, used for determining necessary UI updates
 
 **Render Tree** - The visible UI building blocks
+
+![flutter_trees](https://github.com/NSM722/Expense_Tracker/assets/83452606/d7ecd89f-13d8-4eb9-a004-e2bf5d6370a6)
+
