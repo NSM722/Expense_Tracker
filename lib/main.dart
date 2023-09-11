@@ -13,8 +13,8 @@ void main() {
           useMaterial3: true,
           colorScheme: kColorScheme,
           appBarTheme: const AppBarTheme().copyWith(
-            backgroundColor: kColorScheme.onPrimary,
-            foregroundColor: kColorScheme.onPrimaryContainer,
+            backgroundColor: kColorScheme.onPrimaryContainer,
+            foregroundColor: kColorScheme.onPrimary,
           ),
           cardTheme: const CardTheme().copyWith(
             color: kColorScheme.secondaryContainer,
@@ -27,9 +27,9 @@ void main() {
           ),
           textTheme: ThemeData().textTheme.copyWith(
                 titleLarge: TextStyle(
-                  fontWeight: FontWeight.normal,
+                  fontWeight: FontWeight.bold,
                   color: kColorScheme.onSecondaryContainer,
-                  fontSize: 14,
+                  fontSize: 16,
                 ),
               )),
       home: const Expenses(),
