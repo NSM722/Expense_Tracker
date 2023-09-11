@@ -80,3 +80,11 @@ class _NewExpenseState extends State<NewExpense> {
   }
 }
 ```
+
+### Flutter Trees
+
+**Widget Tree** - Combination of widgets
+
+**Element Tree** - In-memory representation of widgets, used for determining necessary UI updates
+
+**Render Tree** - The visible UI building blocks
