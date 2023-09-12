@@ -23,46 +23,44 @@ void main() {
 
     await tester.tap(addButton);
 
-    // // find the form fields
-    // await tester.pumpAndSettle();
-    // await Future.delayed(const Duration(seconds: 2));
+    await tester.pumpAndSettle();
 
-    // final Finder expenseTitleField =
-    //     find.widgetWithText(TextField, 'Expense Title');
-    // await Future.delayed(const Duration(seconds: 2));
+    final Finder expenseTitleField =
+        find.widgetWithText(TextField, 'Expense Title');
+    await Future.delayed(const Duration(seconds: 2));
 
-    // final Finder expenseAmountField =
-    //     find.widgetWithText(TextField, 'Expense Amount');
-    // await Future.delayed(const Duration(seconds: 2));
+    final Finder expenseAmountField =
+        find.widgetWithText(TextField, 'Expense Amount');
+    await Future.delayed(const Duration(seconds: 2));
 
-    // final Finder calendarIcon = find.byIcon(Icons.calendar_month_outlined);
-    // await Future.delayed(const Duration(seconds: 2));
+    final Finder calendarIcon = find.byIcon(Icons.calendar_month_outlined);
+    await Future.delayed(const Duration(seconds: 2));
 
-    // final Finder dropDownButton = find.byType(DropdownButton);
-    // await Future.delayed(const Duration(seconds: 2));
+    final Finder dropDownButton = find.byType(DropdownButton);
+    await Future.delayed(const Duration(seconds: 2));
 
-    // final Finder saveExpenseButton = find.byType(ElevatedButton);
-    // await Future.delayed(const Duration(seconds: 2));
+    final Finder saveExpenseButton = find.byType(ElevatedButton);
+    await Future.delayed(const Duration(seconds: 2));
 
-    // final Finder cancelExpenseButton = find.byType(TextButton);
-    // await Future.delayed(const Duration(seconds: 2));
+    final Finder cancelExpenseButton = find.byType(TextButton);
+    await Future.delayed(const Duration(seconds: 2));
 
-    // await tester.enterText(expenseTitleField, 'Pizza');
-    // await Future.delayed(const Duration(seconds: 2));
+    await tester.enterText(expenseTitleField, 'Pizza');
+    await Future.delayed(const Duration(seconds: 2));
 
-    // await tester.enterText(expenseAmountField, '30');
-    // await Future.delayed(const Duration(seconds: 2));
+    await tester.enterText(expenseAmountField, '30');
+    await Future.delayed(const Duration(seconds: 2));
 
-    // await tester.tap(calendarIcon);
-    // await Future.delayed(const Duration(seconds: 2));
+    await tester.tap(calendarIcon);
+    await Future.delayed(const Duration(seconds: 2));
 
-    // // Find the date to be selected.
-    // final selectedDate = find.text('15');
-    // await tester.tap(selectedDate);
+    // Find the date to be selected.
+    final Finder selectedDate = find.text('12');
+    await tester.tap(selectedDate);
 
-    // // Tap on the OK button.
-    // final Finder okButton = find.text('OK');
-    // await tester.tap(okButton);
+    // Tap on the OK button.
+    final Finder okButton = find.text('OK');
+    await tester.tap(okButton);
 
     // await tester.tap(dropDownButton);
     // await Future.delayed(const Duration(seconds: 2));
@@ -70,10 +68,10 @@ void main() {
     // await tester.tap(saveExpenseButton);
     // await Future.delayed(const Duration(seconds: 2));
 
-    // // Wait for the app to load
+    // // // Wait for the app to load
     // await tester.pumpAndSettle(const Duration(seconds: 3));
-    // expect(find.text('Pizza'), findsOneWidget);
-    // expect(find.text('30'), findsOneWidget);
-    // expect(find.text('9/12/2023'), findsOneWidget);
+    // expect(find.text('Pizza').at(2), findsOneWidget);
+    // expect(find.text('30').at(2), findsOneWidget);
+    // expect(find.text('9/12/2023').at(2), findsOneWidget);
   });
 }
