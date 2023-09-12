@@ -142,7 +142,7 @@ class _NewExpenseState extends State<NewExpense> {
                           : formatter.format(_selectedDate!),
                     ),
                     IconButton(
-                      key: const ValueKey('addBtn'),
+                      key: const ValueKey('calendarIcon'),
                       onPressed: _showDatePicker,
                       icon: const Icon(
                         Icons.calendar_month_outlined,
