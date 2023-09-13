@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:expense_tracker/main.dart' as app;
+// import 'package:intl/intl.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
@@ -39,9 +40,6 @@ void main() {
     final Finder saveExpenseButton = find.byType(ElevatedButton);
     await tester.pumpAndSettle();
 
-    final Finder cancelExpenseButton = find.byType(TextButton);
-    await tester.pumpAndSettle();
-
     await tester.enterText(expenseTitleField, 'Pizza');
     await tester.pumpAndSettle();
 
@@ -73,10 +71,27 @@ void main() {
     await tester.tap(saveExpenseButton);
     await tester.pumpAndSettle();
 
-    // // // Wait for the app to load
-    // await tester.pumpAndSettle(const Duration(seconds: 3));
-    // expect(find.text('Pizza').at(2), findsOneWidget);
-    // expect(find.text('30').at(2), findsOneWidget);
-    // expect(find.text('9/12/2023').at(2), findsOneWidget);
+    expect(find.text('Pizza'), findsOneWidget);
+    expect(find.text('30'), findsOneWidget);
+
+    // final expectedDate = DateFormat('M/d/yyyy').format(DateTime(2023, 9, 13));
+    // expect(find.text(expectedDate), findsOneWidget);
+  });
+
+  testWidgets('cancel adding an expense and close the modal', (tester) async {
+    app.main();
+
+    // Wait for the app to load
+    await tester.pumpAndSettle();
+
+    final Finder addButton = find.byIcon(Icons.add);
+
+    await tester.tap(addButton);
+
+    await tester.pumpAndSettle();
+
+    final Finder cancelExpenseButton = find.byKey(const ValueKey('cancelBtn'));
+    await tester.tap(cancelExpenseButton);
+    await tester.pumpAndSettle();
   });
 }
