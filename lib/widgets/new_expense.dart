@@ -103,6 +103,7 @@ class _NewExpenseState extends State<NewExpense> {
       child: Column(
         children: [
           TextField(
+            key: const ValueKey('expenseTitle'),
             controller: _expenseTitleController, // set the controller
             maxLength: 60, // max length of characters to type
             decoration: const InputDecoration(
@@ -115,6 +116,7 @@ class _NewExpenseState extends State<NewExpense> {
             children: [
               Expanded(
                 child: TextField(
+                  key: const ValueKey('expenseAmount'),
                   controller: _expenseAmountController,
                   keyboardType:
                       TextInputType.number, // allow only number inputs
@@ -140,6 +142,7 @@ class _NewExpenseState extends State<NewExpense> {
                           : formatter.format(_selectedDate!),
                     ),
                     IconButton(
+                      key: const ValueKey('calendarIcon'),
                       onPressed: _showDatePicker,
                       icon: const Icon(
                         Icons.calendar_month_outlined,
@@ -157,6 +160,7 @@ class _NewExpenseState extends State<NewExpense> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               DropdownButton(
+                key: const ValueKey('categoryDropDown'),
                 value:
                     _selectedCategory, // ensure current selected value is shown onb the screen
                 items: Category.values
@@ -180,10 +184,12 @@ class _NewExpenseState extends State<NewExpense> {
                 },
               ),
               ElevatedButton(
+                key: const ValueKey('saveExpenseBtn'),
                 onPressed: _onSubmit,
                 child: const Text('Save Expense'),
               ),
               TextButton(
+                key: const ValueKey('cancelBtn'),
                 onPressed: () {
                   Navigator.pop(context); // closes the overlay
                 },
