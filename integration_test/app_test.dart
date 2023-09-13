@@ -31,42 +31,47 @@ void main() {
 
     final Finder expenseAmountField =
         find.widgetWithText(TextField, 'Expense Amount');
-    await Future.delayed(const Duration(seconds: 2));
+    await tester.pumpAndSettle();
 
     final Finder calendarIcon = find.byIcon(Icons.calendar_month_outlined);
-    await Future.delayed(const Duration(seconds: 2));
-
-    final Finder dropDownButton = find.byType(DropdownButton);
-    await Future.delayed(const Duration(seconds: 2));
+    await tester.pumpAndSettle();
 
     final Finder saveExpenseButton = find.byType(ElevatedButton);
-    await Future.delayed(const Duration(seconds: 2));
+    await tester.pumpAndSettle();
 
     final Finder cancelExpenseButton = find.byType(TextButton);
-    await Future.delayed(const Duration(seconds: 2));
+    await tester.pumpAndSettle();
 
     await tester.enterText(expenseTitleField, 'Pizza');
-    await Future.delayed(const Duration(seconds: 2));
+    await tester.pumpAndSettle();
 
     await tester.enterText(expenseAmountField, '30');
-    await Future.delayed(const Duration(seconds: 2));
+    await tester.pumpAndSettle();
 
     await tester.tap(calendarIcon);
-    await Future.delayed(const Duration(seconds: 2));
+    await tester.pumpAndSettle();
 
     // Find the date to be selected.
-    final Finder selectedDate = find.text('12');
+    final Finder selectedDate = find.text('13');
     await tester.tap(selectedDate);
 
     // Tap on the OK button.
     final Finder okButton = find.text('OK');
     await tester.tap(okButton);
 
-    // await tester.tap(dropDownButton);
-    // await Future.delayed(const Duration(seconds: 2));
+    await tester.pumpAndSettle();
+    final Finder dropDownButton =
+        find.byKey(const ValueKey('categoryDropDown'));
+    await tester.pumpAndSettle();
 
-    // await tester.tap(saveExpenseButton);
-    // await Future.delayed(const Duration(seconds: 2));
+    await tester.tap(dropDownButton);
+    await tester.pumpAndSettle();
+
+    final Finder selectedCategory = find.text('LEISURE').first;
+    await tester.tap(selectedCategory);
+
+    await tester.tap(saveExpenseButton);
+    await tester.pumpAndSettle();
 
     // // // Wait for the app to load
     // await tester.pumpAndSettle(const Duration(seconds: 3));
