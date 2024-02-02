@@ -18,6 +18,7 @@ void main() {
     (fn) {
       runApp(
         MaterialApp(
+          debugShowCheckedModeBanner: false,
           darkTheme: ThemeData.dark().copyWith(
               useMaterial3: true,
               colorScheme: kDarkModeScheme,
