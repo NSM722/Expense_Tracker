@@ -18,7 +18,7 @@ class _NewExpenseState extends State<NewExpense> {
   final _expenseTitleController = TextEditingController();
   final _expenseAmountController = TextEditingController();
   DateTime? _selectedDate;
-  Category _selectedCategory = Category.leisure;
+  Category _selectedCategory = Category.leisure; // default set category value
 
   void _showDatePicker() async {
     final now = DateTime.now();
@@ -105,7 +105,8 @@ class _NewExpenseState extends State<NewExpense> {
           TextField(
             key: const ValueKey('expenseTitle'),
             controller: _expenseTitleController, // set the controller
-            maxLength: 60, // max length of characters to type
+            maxLength:
+                60, // max length of characters to type, this appears on the UI
             decoration: const InputDecoration(
               label: Text(
                 'Expense Title',
@@ -138,7 +139,7 @@ class _NewExpenseState extends State<NewExpense> {
                   children: [
                     Text(
                       _selectedDate == null
-                          ? 'No Date Selected'
+                          ? 'Choose date'
                           : formatter.format(_selectedDate!),
                     ),
                     IconButton(
