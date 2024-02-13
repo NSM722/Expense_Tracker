@@ -4,7 +4,9 @@ Run `flutter run` on the terminal to view the application
 
 This app tracks day to day expenses and displays the output on a chart
 
-### [uuid | Dart package](https://pub.dev/packages/uuid "generate unique ids")
+## Packages
+
+### [uuid | Dart package](https://pub.dev/packages/uuid 'generate unique ids')
 
 ### Installation
 
@@ -80,3 +82,16 @@ class _NewExpenseState extends State<NewExpense> {
 
 ![flutter_trees](https://github.com/NSM722/Expense_Tracker/assets/83452606/d7ecd89f-13d8-4eb9-a004-e2bf5d6370a6)
 
+### Testing
+
+Type the following command to run all integration tests
+
+```dart
+flutter test integration_test
+```
+
+To test on a real iOS / Android device, first, connect the device and run the following command from the root of the project
+
+```dart
+flutter test integration_test/app_test.dart
+```
