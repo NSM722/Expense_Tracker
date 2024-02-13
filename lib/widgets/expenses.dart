@@ -25,6 +25,24 @@ class _ExpensesState extends State<Expenses> {
       date: DateTime.now(),
       category: Category.work,
     ),
+    Expense(
+      title: 'Seafood',
+      amount: 30.29,
+      date: DateTime.now(),
+      category: Category.food,
+    ),
+    Expense(
+      title: 'Brunch',
+      amount: 200,
+      date: DateTime.now(),
+      category: Category.work,
+    ),
+    Expense(
+      title: 'Manicure',
+      amount: 2500,
+      date: DateTime.now(),
+      category: Category.leisure,
+    ),
   ];
 
   // adds a modal overlay
