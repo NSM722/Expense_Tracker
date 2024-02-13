@@ -1,8 +1,21 @@
 # Expense Tracker
 
-Run `flutter run` on the terminal to view the application
+Run `flutter run` on the terminal to view the application in web mode or connect to a Mobile device and click `Run` within your IDE
 
-This app tracks day to day expenses and displays the output on a chart
+This app tracks day to day expenses and displays the output on a bar chart
+![Expense_tracker](https://github.com/NSM722/Expense_Tracker/assets/83452606/3183aee7-e31f-4c2f-8575-cfdc394d10b3)
+
+![expense_tracker_modal](https://github.com/NSM722/Expense_Tracker/assets/83452606/e3341cb1-9b58-476f-99a8-9d9cb38c5a9d)
+
+## Features
+ - `Home screen` that displays all the expenses as a scrollable list
+ - A `bar chart` to track and show which categories have the highest or lowest expenses
+ - The expenses on the home screen are `dismissable` when slid to either the right or left side
+ - `Snackbar` displayed at the bottom of the screen to confirm an expense has been deleted, the same `Snackbar` offers the option to undo this action
+ - `Action Button` on top right of the the app bar to add a new expense
+ - A `Bottom sheet modal` that contains a form to fill out all the new expense details
+ - An `alert dialog` to communicate any invalid inputs to the user before submitting the form
+ - User is navigated to the home screen upon submitting the form or cancelling action
 
 ## Packages
 
